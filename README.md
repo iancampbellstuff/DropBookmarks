@@ -43,7 +43,7 @@ mvn package
 ./run.sh
 ```
 
-###### 3 -- To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), either navigate to [localhost:8080/hello](localhost:8080/hello) or:
+###### 3 -- To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), either navigate to [localhost:8080/hello](http://localhost:8080/hello) or:
 
 ```
 curl -w "\n" localhost:8080/hello
