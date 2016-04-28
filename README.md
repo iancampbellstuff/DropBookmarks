@@ -1,6 +1,8 @@
 DropBookmarks
 =============
 
+---
+
 This is a repository for the Udemy tutorial [Getting started with Dropwizard](https://www.udemy.com/getting-started-with-dropwizard "Getting started with Dropwizard").
 
 ##### Required dependencies
@@ -10,41 +12,43 @@ This is a repository for the Udemy tutorial [Getting started with Dropwizard](ht
  - [MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html "Installing and Upgrading MySQL")
  
  ---
- 
-#### Notes
 
-##### Section 3, Lecture 7:  Creating a Dropwizard project using Maven and CLI
-
-```
-mvn archetype:generate \
- -DgroupId=com.udemy \
- -DartifactId=DropBookmarks \
- -Dpackage=com.udemy.dropbookmarks \
- -Dname=DropBookmarks \
- -DarchetypeGroupId=io.dropwizard.archetypes \
- -DarchetypeArtifactId=java-simple \
- -DarchetypeVersion=0.8.2 \
- -DinteractiveMode=false
-```
-
----
-
-##### Section 3, Lecture 11:  Hello World with Dropwizard
-
-###### 1 -- Build the application:
+##### Building the application
 
 ```
 mvn package
 ```
 
-###### 2 -- Start the application with [run.sh](run.sh):
+##### Starting the application with [run.sh](run.sh)
 
 ```
 ./run.sh
 ```
 
-###### 3 -- To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), either navigate to [localhost:8080/hello](http://localhost:8080/hello) or:
+---
+
+##### Making ReST requests
+
+To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), try one of these options:
+
+ - Navigate to [localhost:8080/hello](http://localhost:8080/hello)
+
+ - `curl -w "\n" localhost:8080/hello`
+
+To see the value returned from [+HelloResource#getSecuredGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), try one of these options:
+
+ - Navigate to [localhost:8080/hello/secured](http://localhost:8080/hello/secured)
+
+ - Copy the base-64 encoded output for `username:p@ssw0rd` from https://www.base64encode.org:
 
 ```
-curl -w "\n" localhost:8080/hello
+dXNlcm5hbWU6cEBzc3cwcmQ=
 ```
+
+ - In [the Chrome Postman plugin](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en), set the Authorization header as `BASIC dXNlcm5hbWU6cEBzc3cwcmQ=` and make a GET request for localhost:8080/hello/secured
+
+ - In [the Chrome Postman plugin](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en), set the Basic Auth username as `username` and password as `p@ssw0rd`, and make a GET request for localhost:8080/hello/secured
+
+ - `curl -w "\n" localhost:8080/hello/secured -i -H "Authorization: Basic dXNlcm5hbWU6cEBzc3cwcmQ="`
+
+ - `curl -w "\n" localhost:8080/hello/secured -i -u username:p@ssw0rd`
