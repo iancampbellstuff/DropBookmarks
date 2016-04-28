@@ -6,7 +6,9 @@ This is a repository for the Udemy tutorial [Getting started with Dropwizard](ht
 ##### Required dependencies
 
  - minimum JDK7 or [JDK8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html "Java SE Development Kit 8 Downloads")
+
  - [Maven](https://maven.apache.org/install.html "Installing Apache Maven")
+
  - [MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html "Installing and Upgrading MySQL")
  
  ---
@@ -31,19 +33,19 @@ mvn archetype:generate \
 
 ##### Section 3, Lecture 11:  Hello World with Dropwizard
 
-###### 1 -- Build the application:
+###### 1 - Build the application:
 
 ```
 mvn package
 ```
 
-###### 2 -- Start the application with [run.sh](run.sh):
+###### 2 - Start the application with [run.sh](run.sh):
 
 ```
 ./run.sh
 ```
 
-###### 3 -- To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), either navigate to [localhost:8080/hello](http://localhost:8080/hello) or:
+###### 3 - To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), either navigate to [localhost:8080/hello](http://localhost:8080/hello) or:
 
 ```
 curl -w "\n" localhost:8080/hello
