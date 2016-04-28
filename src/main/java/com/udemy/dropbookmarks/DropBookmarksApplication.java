@@ -1,5 +1,7 @@
 package com.udemy.dropbookmarks;
 
+import com.udemy.dropbookmarks.resources.HelloResource;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -19,11 +21,12 @@ public class DropBookmarksApplication extends Application<DropBookmarksConfigura
     public void initialize(final Bootstrap<DropBookmarksConfiguration> bootstrap) {
         // TODO: application initialization
     }
-
-    @Override
-    public void run(final DropBookmarksConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
-    }
-
+	
+    /**
+     * 
+     */
+	@Override
+	public void run(final DropBookmarksConfiguration configuration, final Environment environment) {
+		environment.jersey().register(new HelloResource());
+	}
 }
