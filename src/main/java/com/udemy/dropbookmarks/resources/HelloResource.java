@@ -21,4 +21,15 @@ public final class HelloResource {
 	public String getGreeting() {
 		return Hello.HELLO_WORLD.getGreeting();
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/secured") // sub-resource path as /hello/secured
+	public String getSecuredGreeting() {
+		return Hello.SECURED_HELLO_WORLD.getGreeting();
+	}
 }

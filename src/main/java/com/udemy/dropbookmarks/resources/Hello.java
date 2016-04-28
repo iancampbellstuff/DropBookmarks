@@ -9,7 +9,12 @@ public enum Hello {
 	/**
 	 * 
 	 */
-	HELLO_WORLD("Hello world!", "/hello");
+	HELLO_WORLD("Hello world!", "/hello"),
+	
+	/**
+	 * 
+	 */
+	SECURED_HELLO_WORLD("Hello secured world!", "/hello/secured");
 	
 	/**
 	 * 
