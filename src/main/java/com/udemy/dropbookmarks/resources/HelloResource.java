@@ -19,6 +19,6 @@ public final class HelloResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getGreeting() {
-		return HelloEnum.HELLO_WORLD.toString();
+		return Hello.HELLO_WORLD.getGreeting();
 	}
 }
