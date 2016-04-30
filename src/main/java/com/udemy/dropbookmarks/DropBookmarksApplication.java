@@ -37,7 +37,7 @@ public class DropBookmarksApplication extends Application<DropBookmarksConfigura
 		
 		// registering authentication
 		environment.jersey().register(AuthFactory.binder(
-					new BasicAuthFactory<>(new HelloAuthenticator(), "SECURITY REALM", User.class)
+					new BasicAuthFactory<>(new HelloAuthenticator(configuration.getPassword()), "SECURITY REALM", User.class)
 				));
 	}
 }
