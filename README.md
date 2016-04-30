@@ -31,31 +31,19 @@ mvn package
 
 ##### Making ReST requests
 
-To see the value returned from [+HelloResource#getGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), try one of these options:
-
 ###### HTTP
 
- - Navigate to [localhost:8080/hello](http://localhost:8080/hello)
+1. Navigate to [localhost:8080/hello](http://localhost:8080/hello)
 
- - `curl -w "\n" localhost:8080/hello`
+2. `curl -w "\n" localhost:8080/hello`
 
-###### HTTPS
+3. Navigate to [localhost:8080/hello/secured](http://localhost:8080/hello/secured)
 
- - Navigate to https://localhost:8443/hello
-
- - `curl -w "\n" https://localhost:8443/hello -k`
-
-To see the value returned from [+HelloResource#getSecuredGreeting():String](src/main/java/com/udemy/dropbookmarks/resources/HelloResource.java), try one of these options:
-
-###### HTTP
-
-1. Navigate to [localhost:8080/hello/secured](http://localhost:8080/hello/secured)
+4. `curl -w "\n" localhost:8080/hello/secured -i -u username:p@ssw0rd`
  
-2. In [the Chrome Postman plugin](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en), set the Basic Auth username as `username` and password as `p@ssw0rd`, and make a GET request for localhost:8080/hello/secured
+5. In [the Chrome Postman plugin](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en), set the Basic Auth username as `username` and password as `p@ssw0rd`, and make a GET request for localhost:8080/hello/secured
 
-3. `curl -w "\n" localhost:8080/hello/secured -i -u username:p@ssw0rd`
-
-4. Copy the base-64 encoded output for `username:p@ssw0rd` from https://www.base64encode.org:
+6. Copy the base-64 encoded output for `username:p@ssw0rd` from https://www.base64encode.org:
 
 ```
 dXNlcm5hbWU6cEBzc3cwcmQ=
@@ -64,10 +52,11 @@ dXNlcm5hbWU6cEBzc3cwcmQ=
  - In [the Chrome Postman plugin](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en), set the Authorization header as `BASIC dXNlcm5hbWU6cEBzc3cwcmQ=` and make a GET request for localhost:8080/hello/secured
 
  - `curl -w "\n" localhost:8080/hello/secured -i -H "Authorization: Basic dXNlcm5hbWU6cEBzc3cwcmQ="`
+ 
 
 ###### HTTPS
 
-1. `curl -w "\n" https://localhost:8443/hello/secured -k -i -u username:p@ssw0rd`
+1. `curl -w "\n" localhost:8080/hello/secured -k -i -u username:p@ssw0rd`
 
 2. Copy the base-64 encoded output for `username:p@ssw0rd` from https://www.base64encode.org:
 
@@ -75,4 +64,5 @@ dXNlcm5hbWU6cEBzc3cwcmQ=
 dXNlcm5hbWU6cEBzc3cwcmQ=
 ```
 
- - `curl -w "\n" https://localhost:8443/hello/secured -k -i -H "Authorization: Basic dXNlcm5hbWU6cEBzc3cwcmQ="`
+ - `curl -w "\n" localhost:8080/hello/secured -k -i -H "Authorization: Basic dXNlcm5hbWU6cEBzc3cwcmQ="`
+ 
