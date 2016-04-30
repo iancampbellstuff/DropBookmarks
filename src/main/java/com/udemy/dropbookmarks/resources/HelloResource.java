@@ -5,6 +5,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.udemy.dropbookmarks.core.User;
+
+import io.dropwizard.auth.Auth;
+
 /**
  * 
  * @author icampbell2
@@ -29,7 +33,7 @@ public final class HelloResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/secured") // sub-resource path as /hello/secured
-	public String getSecuredGreeting() {
-		return Hello.SECURED_HELLO_WORLD.getGreeting();
+	public String getSecuredGreeting(@Auth User user) {
+		return Hello.HELLO_SECURED_WORLD.getGreeting();
 	}
 }

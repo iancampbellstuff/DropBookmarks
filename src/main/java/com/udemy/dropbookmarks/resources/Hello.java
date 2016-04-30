@@ -14,7 +14,7 @@ public enum Hello {
 	/**
 	 * 
 	 */
-	SECURED_HELLO_WORLD("Hello secured world!", "/hello/secured");
+	HELLO_SECURED_WORLD("Hello secured world!", "/hello/secured");
 	
 	/**
 	 * 
