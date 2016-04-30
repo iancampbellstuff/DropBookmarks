@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import javax.ws.rs.core.MediaType;
 
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 
@@ -26,6 +28,11 @@ public final class HelloResourceTest {
 	/**
 	 * 
 	 */
+	private static final HttpAuthenticationFeature FEATURE = HttpAuthenticationFeature.basic("u", "p");
+	
+	/**
+	 * 
+	 */
 	private static final Authenticator<BasicCredentials, User> AUTHENTICATOR = new Authenticator<BasicCredentials, User>() {
 
 		@Override
@@ -34,11 +41,22 @@ public final class HelloResourceTest {
 		}		
 	};
 
+	/**
+	 * 
+	 */
 	@ClassRule
 	public static final ResourceTestRule RULE = ResourceTestRule.builder()
 			.addProvider(AuthFactory.binder(new BasicAuthFactory<>(AUTHENTICATOR, "realm", User.class)))
 			.addResource(new HelloResource())
 			.build();
+	
+	/**
+	 * 
+	 */
+	@BeforeClass
+	public static final void setUpClass() {
+		RULE.getJerseyTest().client().register(FEATURE);
+	}
 	
 	/**
 	 * 
