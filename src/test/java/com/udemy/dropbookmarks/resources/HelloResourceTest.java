@@ -33,4 +33,18 @@ public final class HelloResourceTest {
 		
 		assertEquals(result, helloWorld.getGreeting());
 	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testGetSecuredGreeting() {
+		Hello helloSecuredWorld = Hello.HELLO_SECURED_WORLD;
+		String result = RULE.getJerseyTest()
+				.target(helloSecuredWorld.getPath())
+				.request(MediaType.TEXT_PLAIN)
+				.get(String.class);
+		
+		assertEquals(result, helloSecuredWorld.getGreeting());
+	}
 }
