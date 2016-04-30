@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -47,6 +48,7 @@ public final class HelloResourceTest {
 	@ClassRule
 	public static final ResourceTestRule RULE = ResourceTestRule.builder()
 			.addProvider(AuthFactory.binder(new BasicAuthFactory<>(AUTHENTICATOR, "realm", User.class)))
+			.setTestContainerFactory(new GrizzlyWebTestContainerFactory())
 			.addResource(new HelloResource())
 			.build();
 	
