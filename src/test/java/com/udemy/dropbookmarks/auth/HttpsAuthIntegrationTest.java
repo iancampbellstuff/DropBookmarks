@@ -2,11 +2,13 @@ package com.udemy.dropbookmarks.auth;
 
 import static org.junit.Assert.*;
 
+import javax.net.ssl.SSLContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.SslConfigurator;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +25,7 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
  * 
  * @author icampbell2
  */
-public final class AuthIntegrationTest {
+public final class HttpsAuthIntegrationTest {
 
 	/**
 	 * 
@@ -46,12 +48,22 @@ public final class AuthIntegrationTest {
 	/**
 	 * 
 	 */
-	private static final String TARGET = "http://localhost:8080/";
+	private static final String TARGET = "https://localhost:8443/";
 	
 	/**
 	 * 
 	 */
 	private static final Hello helloSecuredWorld = Hello.HELLO_SECURED_WORLD;
+	
+	/**
+	 * 
+	 */
+	private static final String TRUST_STORE_FILENAME = "dropbookmarks.keystore";
+	
+	/**
+	 * 
+	 */
+	private static final String TRUST_STORE_PASSWORD = "p@ssw0rd";
 	
 	/**
 	 * 
@@ -68,7 +80,13 @@ public final class AuthIntegrationTest {
 	 */
 	@Before
 	public void setUp() {
-		client = ClientBuilder.newClient();
+		SslConfigurator configurator = SslConfigurator.newInstance();
+		configurator.trustStoreFile(TRUST_STORE_FILENAME)
+				.trustStorePassword(TRUST_STORE_PASSWORD);
+		SSLContext context = configurator.createSSLContext();
+		client = ClientBuilder.newBuilder()
+				.sslContext(context)
+				.build();
 	}
 	
 	/**
