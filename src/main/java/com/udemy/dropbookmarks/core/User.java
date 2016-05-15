@@ -32,6 +32,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -41,6 +43,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
+@NamedQueries({
+	@NamedQuery(name = "com.udemy.dropbookmarks.core.User.selectAll", query = "SELECT u FROM User u"),
+	@NamedQuery(name = "com.udemy.dropbookmarks.core.User.selectByCredentials", query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
+})
 public class User {
 	
 	@Id
