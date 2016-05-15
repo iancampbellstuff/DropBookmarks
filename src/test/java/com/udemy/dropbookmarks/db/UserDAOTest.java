@@ -131,7 +131,6 @@ public class UserDAOTest {
 	public void testSelectByCredentials() {
 		String expectedUsername = "user1";
 		String expectedPassword = "pwd1";
-
 		Optional<User> user;
 
 		// First
@@ -139,7 +138,10 @@ public class UserDAOTest {
 			ManagedSessionContext.bind(session);
 			tx = session.beginTransaction();
 
-			// Do something here with UserDAO
+			session.createSQLQuery("insert into users values(null, :username, :password)")
+					.setString("username", expectedUsername)
+					.setString("password", expectedPassword)
+					.executeUpdate();
 
 			tx.commit();
 		} catch (Exception e) {
@@ -147,6 +149,7 @@ public class UserDAOTest {
 				tx.rollback();
 			}
 			throw e;
+			
 		} finally {
 			ManagedSessionContext.unbind(SESSION_FACTORY);
 			session.close();
@@ -160,20 +163,24 @@ public class UserDAOTest {
 		try {
 			ManagedSessionContext.bind(session);
 			tx = session.beginTransaction();
-
-			// Do something here with UserDAO
+			user = dao.selectByCredentials(expectedUsername, expectedPassword);
 
 			tx.commit();
+			
 		} catch (Exception e) {
 			if (tx != null && tx.isActive()) {
 				tx.rollback();
 			}
 			throw e;
+			
 		} finally {
 			ManagedSessionContext.unbind(SESSION_FACTORY);
 			session.close();
 		}
-
+		
+		Assert.assertNotNull(user);
+		Assert.assertTrue(user.isPresent());
+		Assert.assertEquals(expectedUsername, user.get().getUsername());
 	}
 
 }
