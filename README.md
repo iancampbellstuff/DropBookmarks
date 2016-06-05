@@ -66,3 +66,16 @@ dXNlcm5hbWU6cEBzc3cwcmQ=
 
  - `curl -w "\n" localhost:8080/hello/secured -k -i -H "Authorization: Basic dXNlcm5hbWU6cEBzc3cwcmQ="`
  
+---
+
+##### Using `cURL` to test [BookmarksResource.java](src/main/java/com/udemy/dropbookmarks/resources/BookmarksResource.java "BookmarksResource.java in http://github.com/icampbell2/DropBookmarks")
+
+###### GET
+
+```
+curl -i -k -w "\n" -u udemy:p@ssw0rd http://localhost:8080/bookmarks
+```
+
+```
+curl -i -k -w "\n" -u udemy:p@ssw0rd http://localhost:8080/bookmarks/1
+```
