@@ -1,14 +1,14 @@
 package com.udemy.dropbookmarks;
 
 import com.udemy.dropbookmarks.auth.DBAuthenticator;
-import com.udemy.dropbookmarks.auth.HelloAuthenticator;
 import com.udemy.dropbookmarks.core.Bookmark;
 import com.udemy.dropbookmarks.core.User;
+import com.udemy.dropbookmarks.db.BookmarkDAO;
 import com.udemy.dropbookmarks.db.UserDAO;
+import com.udemy.dropbookmarks.resources.BookmarksResource;
 import com.udemy.dropbookmarks.resources.HelloResource;
 
 import io.dropwizard.Application;
-import io.dropwizard.Configuration;
 import io.dropwizard.auth.AuthFactory;
 import io.dropwizard.auth.basic.BasicAuthFactory;
 import io.dropwizard.db.DataSourceFactory;
@@ -60,9 +60,11 @@ public class DropBookmarksApplication extends Application<DropBookmarksConfigura
 	@Override
 	public void run(final DropBookmarksConfiguration configuration, final Environment environment) {
 		final UserDAO userDAO = new UserDAO(hibernateBundle.getSessionFactory());
+		final BookmarkDAO bookmarkDAO = new BookmarkDAO(hibernateBundle.getSessionFactory());
 		
 		// registering resources
 		environment.jersey().register(new HelloResource());
+		environment.jersey().register(new BookmarksResource(bookmarkDAO));
 		
 		// registering authentication
 		environment.jersey().register(AuthFactory.binder(
