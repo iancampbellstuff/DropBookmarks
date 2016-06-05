@@ -25,6 +25,7 @@ package com.udemy.dropbookmarks.db;
 
 import com.google.common.base.Optional;
 import com.udemy.dropbookmarks.core.Bookmark;
+
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -60,6 +61,14 @@ public class BookmarkDAO extends AbstractDAO<Bookmark> {
     public Optional<Bookmark> findById(long id) {
         return Optional.fromNullable(get(id));
     }
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Bookmark> selectAll() {
+		return list(namedQuery("com.udemy.dropbookmarks.core.Bookmark.selectAll"));
+	}
 
     /**
      * Create or Update a bookmark.

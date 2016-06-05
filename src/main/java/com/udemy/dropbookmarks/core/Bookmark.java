@@ -44,6 +44,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "bookmarks")
 @NamedQueries({
+	@NamedQuery(name = "com.udemy.dropbookmarks.core.Bookmark.selectAll", query = "SELECT b FROM Bookmark b"),
 	@NamedQuery(name = "com.udemy.dropbookmarks.core.Bookmark.findForUser", query = "select b from Bookmark b where b.user.id = :id"),
 	@NamedQuery(name = "com.udemy.dropbookmarks.core.Bookmark.remove", query = "delete from Bookmark b where b.id = :id")
 })
@@ -56,7 +57,7 @@ public class Bookmark {
     private String url;
     private String description;
     @JsonIgnore
-    @ManyToOne(targetEntity = Bookmark.class, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
     public Bookmark() {

@@ -25,8 +25,6 @@ package com.udemy.dropbookmarks.core;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.ArrayList;
-//import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -62,7 +60,7 @@ public class User {
 	
     private String password;
     
-    @OneToMany(targetEntity = User.class, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bookmarks", targetEntity = User.class, cascade = CascadeType.ALL)
     private List<Bookmark> bookmarks  = new ArrayList<>();
     
     public User() {
