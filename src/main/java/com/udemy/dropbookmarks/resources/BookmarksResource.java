@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -46,7 +47,7 @@ public final class BookmarksResource {
 	
 	@DELETE
 	@UnitOfWork
-	@Path("/{id}")
+	@Path("/{id}") //https://localhost:8443/bookmarks/1
 	public Optional<Bookmark> delete(@Auth User user, @PathParam("id") LongParam id) {
 		Optional<Bookmark> bookmark = findIfAuthorized(id.get(), user.getId());
 		
@@ -55,6 +56,13 @@ public final class BookmarksResource {
 		}
 		
 		return bookmark;
+	}
+	
+	@POST
+	@UnitOfWork
+	public Bookmark saveBookmark(@Auth User user, Bookmark bookmark) {
+		bookmark.setUser(user);
+		return dao.save(bookmark);
 	}
 	
 	private Optional<Bookmark> findIfAuthorized(long bookmarkId, long userId) {
