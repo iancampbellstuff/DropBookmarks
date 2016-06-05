@@ -79,7 +79,7 @@ public final class BookmarkDAOTest {
 	/**
 	 * 
 	 */
-	@Test
+//	@Test
 	public void testFindForUser() {
 		User user = null;
 		
@@ -135,7 +135,7 @@ public final class BookmarkDAOTest {
 	/**
 	 * 
 	 */
-	@Test
+//	@Test
 	public void testFindById() {
 		User user = null;
 		
@@ -192,7 +192,7 @@ public final class BookmarkDAOTest {
 	/**
 	 * Test of findAll method, of class BookmarkDAO.
 	 */
-	@Test
+//	@Test
 	public void testSelectAll() {
 		List<Bookmark> bookmarks = null;
 		
@@ -223,7 +223,7 @@ public final class BookmarkDAOTest {
 	/**
 	 * 
 	 */
-	@Test
+//	@Test
 	public void testSave() {
 		User user = null;
 		
@@ -281,7 +281,7 @@ public final class BookmarkDAOTest {
 	/**
 	 * 
 	 */
-	@Test
+//	@Test
 	public void testDelete() {
 		User user = null;
 		
