@@ -29,6 +29,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -38,6 +40,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "bookmarks")
+@NamedQueries({
+	@NamedQuery(name = "com.udemy.dropbookmarks.core.Bookmark.findForUser", query = "select b from Bookmark b where b.user.id = :id"),
+	@NamedQuery(name = "com.udemy.dropbookmarks.core.Bookmark.remove", query = "delete from Bookmark b where b.id = :id")
+})
 public class Bookmark {
 
     @Id
