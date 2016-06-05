@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import com.udemy.dropbookmarks.core.User;
 
 import io.dropwizard.auth.Auth;
+import io.dropwizard.hibernate.UnitOfWork;
 
 /**
  * 
@@ -33,6 +34,7 @@ public final class HelloResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/secured") // sub-resource path as /hello/secured
+	@UnitOfWork
 	public String getSecuredGreeting(@Auth User user) {
 		return Hello.HELLO_SECURED_WORLD.getGreeting();
 	}

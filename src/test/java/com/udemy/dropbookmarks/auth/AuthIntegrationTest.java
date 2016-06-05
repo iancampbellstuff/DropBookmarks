@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 
@@ -17,6 +18,8 @@ import com.udemy.dropbookmarks.DropBookmarksApplication;
 import com.udemy.dropbookmarks.DropBookmarksConfiguration;
 import com.udemy.dropbookmarks.resources.Hello;
 
+import io.dropwizard.Application;
+import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 
 /**
@@ -28,7 +31,7 @@ public final class AuthIntegrationTest {
 	/**
 	 * 
 	 */
-	private static final String CONFIG_PATH = "config.yml";
+	private static final String CONFIG_PATH = ResourceHelpers.resourceFilePath("test-config.yml");
 	
 	/**
 	 * 
@@ -41,7 +44,7 @@ public final class AuthIntegrationTest {
 	 * 
 	 */
 	private static final HttpAuthenticationFeature FEATURE
-			= HttpAuthenticationFeature.basic("username", "p@ssw0rd");
+			= HttpAuthenticationFeature.basic("udemy", "p@ssw0rd");
 	
 	/**
 	 * 
@@ -62,6 +65,16 @@ public final class AuthIntegrationTest {
 	 * 
 	 */
 	private Client client;
+	
+	/**
+	 * @throws Exception 
+	 * 
+	 */
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+		Application<DropBookmarksConfiguration> application = RULE.getApplication();
+		application.run("db", "migrate", "-i DEV", CONFIG_PATH);
+	}
 	
 	/**
 	 * 
