@@ -92,4 +92,14 @@ curl -i -k -w "\n" -u udemy:p@ssw0rd http://localhost:8080/bookmarks -X POST -H 
 curl -i -k -w "\n" -u udemy:p@ssw0rd http://localhost:8080/bookmarks/5 -X DELETE
 ```
 
+```
+curl -i -k -w "\n" -u udemy:p@ssw0rd http://localhost:8080/bookmarks -X DELETE
+```
+
+###### PUT
+
+```
+curl -i -k -w "\n" -u udemy:p@ssw0rd http://localhost:8080/bookmarks/5 -X PUT -H "Content-Type: application/json" -d '{"name": "udemy", "url": "http://udemy.com", "description": "e-learning site"}'
+```
+
  
