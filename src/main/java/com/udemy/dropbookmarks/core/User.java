@@ -29,6 +29,7 @@ import java.util.List;
 //import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,7 +62,7 @@ public class User {
 	
     private String password;
     
-    @OneToMany(mappedBy = "user")
+    @OneToMany(targetEntity = User.class, cascade = CascadeType.ALL)
     private List<Bookmark> bookmarks  = new ArrayList<>();
     
     public User() {

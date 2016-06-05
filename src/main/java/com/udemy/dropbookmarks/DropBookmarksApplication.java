@@ -2,6 +2,7 @@ package com.udemy.dropbookmarks;
 
 import com.udemy.dropbookmarks.auth.DBAuthenticator;
 import com.udemy.dropbookmarks.auth.HelloAuthenticator;
+import com.udemy.dropbookmarks.core.Bookmark;
 import com.udemy.dropbookmarks.core.User;
 import com.udemy.dropbookmarks.db.UserDAO;
 import com.udemy.dropbookmarks.resources.HelloResource;
@@ -22,7 +23,7 @@ public class DropBookmarksApplication extends Application<DropBookmarksConfigura
 	 * 
 	 */
 	private final HibernateBundle<DropBookmarksConfiguration> hibernateBundle
-			= new HibernateBundle<DropBookmarksConfiguration>(User.class) {
+			= new HibernateBundle<DropBookmarksConfiguration>(User.class, Bookmark.class) {
 				@Override
 				public DataSourceFactory getDataSourceFactory(DropBookmarksConfiguration configuration) {
 					return configuration.getDataSourceFactory();

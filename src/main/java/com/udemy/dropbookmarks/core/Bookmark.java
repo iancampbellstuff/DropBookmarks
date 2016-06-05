@@ -25,10 +25,13 @@ package com.udemy.dropbookmarks.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -53,6 +56,7 @@ public class Bookmark {
     private String url;
     private String description;
     @JsonIgnore
+    @ManyToOne(targetEntity = Bookmark.class, cascade = CascadeType.ALL)
     private User user;
 
     public Bookmark() {

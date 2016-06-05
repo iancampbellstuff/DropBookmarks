@@ -19,6 +19,7 @@ import com.udemy.dropbookmarks.DropBookmarksApplication;
 import com.udemy.dropbookmarks.DropBookmarksConfiguration;
 import com.udemy.dropbookmarks.resources.Hello;
 
+import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 
 /**
@@ -30,7 +31,7 @@ public final class HttpsAuthIntegrationTest {
 	/**
 	 * 
 	 */
-	private static final String CONFIG_PATH = "config.yml";
+	private static final String CONFIG_PATH = ResourceHelpers.resourceFilePath("test-config.yml");
 	
 	/**
 	 * 
@@ -43,7 +44,7 @@ public final class HttpsAuthIntegrationTest {
 	 * 
 	 */
 	private static final HttpAuthenticationFeature FEATURE
-			= HttpAuthenticationFeature.basic("username", "p@ssw0rd");
+			= HttpAuthenticationFeature.basic("udemy", "p@ssw0rd");
 	
 	/**
 	 * 
